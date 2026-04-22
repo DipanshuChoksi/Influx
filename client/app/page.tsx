@@ -3,26 +3,24 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AuthPageClient from "@/app/components/ui/AuthPageClient";
-import { getRequest } from "@/app/utils/api";
+import { useFetchCurrentUser } from "./hooks/useFetchCurrentUser";
+import useUser from "./contexts/user.context";
 
 export default function Page() {
   const router = useRouter();
 
+  const { loading } = useFetchCurrentUser();
+  const user = useUser((state) => state.user);
+
   useEffect(() => {
-    async function checkAuth() {
-      try {
-        const res = await getRequest("users");
-
-        if (res?.status === 200) {
-          router.push("/home");
-        }
-      } catch (error) {
-        console.log(error);
-      }
+    if (user) {
+      router.replace("/home");
     }
+  }, [user, router]);
 
-    checkAuth();
-  }, [router]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return <AuthPageClient />;
 }

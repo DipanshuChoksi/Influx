@@ -2,10 +2,10 @@ import { UserModel } from '@/models';
 import { ApiError } from '@/shared';
 import { HttpStatusCode } from '@/types';
 import { NextFunction, Request, Response } from 'express';
+
 export const GetUserController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, _id } = (req as any).user;
-    const user = await UserModel.findById(_id);
+    const user = await UserModel.findById((req as any)?.user?._id);
 
     if (!user) {
       throw new ApiError('User not found', 'getUserController', HttpStatusCode.NOT_FOUND, true);
@@ -13,7 +13,21 @@ export const GetUserController = async (req: Request, res: Response, next: NextF
 
     res.status(HttpStatusCode.OK).json({
       message: 'User fetched successfully',
-      data: { email, id: _id },
+      user,
+    });
+  } catch (error: any) {
+    res.status(HttpStatusCode.UNAUTHORIZED).json({
+      message: 'User not found',
+      user: null,
+    });
+    next(error);
+  }
+};
+
+export const VerifiedUserController = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    res.status(HttpStatusCode.OK).json({
+      message: 'User verified successfully',
     });
   } catch (error: any) {
     next(error);

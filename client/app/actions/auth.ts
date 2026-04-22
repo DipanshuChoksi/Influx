@@ -38,7 +38,7 @@ export async function signup(state: FormState, formData: FormData) {
     return errorResponse("An error occurred during sign up");
   }
 
-  redirect("/home");
+  redirect("/");
 }
 
 export async function login(state: FormState, formData: FormData) {

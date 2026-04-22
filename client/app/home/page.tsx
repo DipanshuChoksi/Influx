@@ -1,24 +1,8 @@
-import { signout } from "@/app/actions/auth";
-import { redirect } from "next/navigation";
-import Link from "next/link";
 import MediaSection from "../components/ui/MoviesSection";
 import RoomCard from "../components/ui/RoomCard";
-import LogoutIcon from "../components/icons/LogoutIcon";
 import Sidebar from "../components/ui/Sidebar";
 
 export default async function HomePage() {
-  // Authentication check
-
-  // Using the mock user as requested by user's recent edit, but falling back to DB user if available
-  const user = {
-    name: "Dipanshu choksi",
-    email: "dipanshu@example.com",
-  };
-
-  if (!user) {
-    redirect("/signin");
-  }
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-indigo-500/30">
       <Sidebar />
@@ -47,38 +31,6 @@ export default async function HomePage() {
                 placeholder="Search movies, shows, or rooms..."
                 className="w-full bg-slate-900/50 border border-slate-800 rounded-full py-2.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all"
               />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-6 ml-8">
-            <button className="relative p-2 text-slate-400 hover:text-white transition-colors">
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-              <span className="absolute top-2 right-2 w-2 h-2 bg-indigo-500 rounded-full ring-2 ring-slate-950"></span>
-            </button>
-            <div className="flex items-center gap-3 pl-6 border-l border-slate-800">
-              <div className="text-right hidden sm:block">
-                <p className="text-sm font-semibold text-white leading-none">
-                  {user.name}
-                </p>
-                <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-bold">
-                  Admin
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-slate-800 to-slate-700 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold shadow-inner">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
             </div>
           </div>
         </header>

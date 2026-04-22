@@ -1,20 +1,9 @@
-import { signout } from "@/app/actions/auth";
-import { redirect } from "next/navigation";
-import Link from "next/link";
+"use client";
 import ShowCard from "../components/ui/ShowCard";
 import ContinueCard from "../components/ui/ContinueCard";
 import Sidebar from "../components/ui/Sidebar";
 
 export default async function TvShowsPage() {
-  const user =  {
-    name: "Dipanshu choksi",
-    email: "dipanshu@example.com",
-  };
-
-  if (!user ) {
-    redirect("/signin");
-  }
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 flex overflow-hidden">
       {/* Side Navigation */}
@@ -44,22 +33,6 @@ export default async function TvShowsPage() {
                 placeholder="Search TV shows, episodes..."
                 className="w-full bg-slate-900/50 border border-slate-800 rounded-full py-2.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all"
               />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-6 ml-8">
-            <div className="flex items-center gap-3 pl-6 border-l border-slate-800">
-              <div className="text-right hidden sm:block">
-                <p className="text-sm font-semibold text-white leading-none">
-                  {user.name}
-                </p>
-                <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-bold">
-                  Premium
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
             </div>
           </div>
         </header>

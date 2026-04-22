@@ -9,13 +9,9 @@ import Link from "next/link";
 
 interface Props {
   movieTitle: string;
-  user: {
-    name: string;
-    email: string;
-  };
 }
 
-export default function MovieDetailClient({ movieTitle, user }: Props) {
+export default function MovieDetailClient({ movieTitle }: Props) {
   const [showPlayer, setShowPlayer] = useState(false);
 
   return (
@@ -49,25 +45,6 @@ export default function MovieDetailClient({ movieTitle, user }: Props) {
                 />
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-6 ml-8">
-            <Link
-              href="/profile"
-              className="flex items-center gap-3 pl-6 border-l border-slate-800 hover:opacity-80 transition-opacity"
-            >
-              <div className="text-right hidden sm:block">
-                <p className="text-sm font-semibold text-white leading-none">
-                  {user.name}
-                </p>
-                <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider font-bold">
-                  Collector
-                </p>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-indigo-400 font-bold">
-                {user.name.charAt(0).toUpperCase()}
-              </div>
-            </Link>
           </div>
         </header>
 

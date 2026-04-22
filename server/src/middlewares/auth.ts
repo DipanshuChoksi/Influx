@@ -11,7 +11,6 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
       throw new ApiError('Unauthorized: No token provided', 'authMiddleware', HttpStatusCode.UNAUTHORIZED);
     }
     const decoded = verifyToken(token);
-
     (req as any).user = decoded;
 
     next();
