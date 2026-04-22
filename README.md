@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Influx
 
-## Getting Started
+A self-hosted, private media server with real-time social experiences — built for friends and family.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## What the project does
+
+**Influx** is a production-grade, self-hosted media platform that combines media streaming with real-time social features. It allows users to:
+
+- **Stream Media**: High-quality streaming of Movies and TV shows.
+- **Watch Parties**: Synchronized playback for groups with real-time drift correction.
+- **Global Chat**: Persistent server-wide messaging.
+- **Voice & Video**: Integrated WebRTC-based communication within watch rooms.
+- **Secure Access**: Admin-controlled, invite-only user management.
+
+## Why it exists
+
+In an era of fragmented streaming services and data privacy concerns, Influx offers a **private, always-on digital space**.
+
+- **Ownership**: You own your data and your hardware.
+- **Zero-Trust**: Designed with a secure architecture where admin has full control.
+- **Social Connection**: Built to bridge the gap between solo streaming and physical watch parties without relying on third-party platforms.
+
+## Tech Stack
+
+### Frontend
+
+- **Framework**: Next.js (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Media Playback**: Plyr
+
+### Backend
+
+- **Framework**: Express.js
+- **Runtime**: Node.js
+- **Database**: MongoDB (Mongoose ODM)
+- **Auth**: JWT + HTTP-Only Cookies
+- **Logging**: Bunyan
+
+## High-level Architecture
+
+Influx uses a decoupled **Client-Server architecture**:
+
+```mermaid
+graph LR
+    User((User)) --> Client[Next.js Frontend]
+    Client --> API[Express API]
+    API --> DB[(MongoDB)]
+    API --> Media[(Local Media Assets)]
+    Client --> WS[WebSockets and WebRTC]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend**: Handles the UI/UX and client-side logic.
+- **Backend**: Manages business logic, authentication, and database interactions.
+- **Real-time Layer**: (Planned) Handles synchronization and communication via WebSockets.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+influx_new/
+├── client/          # Next.js frontend application
+│   ├── app/         # App router, pages, and components
+│   └── public/      # Static assets
+├── server/          # Express.js backend API
+│   ├── src/         # Source code (Controllers, Models, Routes)
+│   └── dist/        # Compiled production code
+└── README.md        # Root documentation
+```
 
-## Learn More
+## How to run the full project
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js (v18+)
+- MongoDB (Local or Atlas)
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. Setup Backend
 
-## Deploy on Vercel
+```bash
+cd server
+cp .env.example .env  # Configure your MONGO_DB_URI and JWT_SECRET
+npm install
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. Setup Frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+cd client
+npm install
+npm run dev
+```
+
+The application will be available at:
+
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:5000`

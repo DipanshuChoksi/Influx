@@ -1,0 +1,2 @@
+- Create global css variable theme, dark and light mode
+- in NavItem make path specific using constants
