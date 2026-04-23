@@ -3,7 +3,7 @@ import ShowCard from "../components/ui/ShowCard";
 import ContinueCard from "../components/ui/ContinueCard";
 import Sidebar from "../components/ui/Sidebar";
 
-export default async function TvShowsPage() {
+export default function TvShowsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 flex overflow-hidden">
       {/* Side Navigation */}

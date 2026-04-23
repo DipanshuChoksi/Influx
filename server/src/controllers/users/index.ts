@@ -1,11 +1,11 @@
-import { UserModel } from '@/models';
+import { getUserById } from '@/repositories';
 import { ApiError } from '@/shared';
 import { HttpStatusCode } from '@/types';
 import { NextFunction, Request, Response } from 'express';
 
 export const GetUserController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const user = await UserModel.findById((req as any)?.user?._id);
+    const user = await getUserById((req as any)?.user?._id);
 
     if (!user) {
       throw new ApiError('User not found', 'getUserController', HttpStatusCode.NOT_FOUND, true);

@@ -1,16 +1,45 @@
 "use client";
+
 import { redirect } from "next/navigation";
 import Sidebar from "../components/ui/Sidebar";
-import Member from "../components/ui/Member";
 import Message from "../components/ui/Message";
 import ChatIcon from "../components/icons/ChatIcon";
 import useUser from "../contexts/user.context";
+import { useEffect, useState } from "react";
+import { initSocket } from "../utils/socket";
+import SendIcon from "../components/icons/SendIcon";
+import SmileIcon from "../components/icons/SmileIcon";
+import PlusIcon from "../components/icons/PlusIcon";
+import ThreeDotIcon from "../components/icons/ThreeDotIcon";
 
 export default function GlobalChatPage() {
   const user = useUser((state) => state.user);
+  const [msg, setMsg] = useState("");
 
   if (!user) {
     redirect("/");
+  }
+
+  useEffect(() => {
+    if (!user) return;
+    const socket = initSocket();
+    socket.emit("join", user.name);
+    socket.on("receivedMsg", (data: { name: string; message: string }) => {
+      console.log(data.name, data.message);
+    });
+    return () => {
+      socket.disconnect();
+    };
+  }, [user]);
+
+  function handleSendMsg() {
+    if (!user || msg === "") return;
+    const socket = initSocket();
+    socket.emit("sendMsg", {
+      name: user.name,
+      message: msg,
+    });
+    setMsg("");
   }
 
   return (
@@ -47,19 +76,7 @@ export default function GlobalChatPage() {
               </div>
             </div>
             <button className="p-2 text-slate-400 hover:text-white transition-colors">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                />
-              </svg>
+              <ThreeDotIcon />
             </button>
           </div>
         </header>
@@ -85,49 +102,24 @@ export default function GlobalChatPage() {
             </div>
             <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-2 flex items-center gap-2 shadow-2xl shadow-indigo-500/5 group-focus-within:border-indigo-500/50 group-focus-within:ring-4 group-focus-within:ring-indigo-500/10 transition-all">
               <button className="p-3 text-slate-500 hover:text-indigo-400 transition-colors">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
+                <PlusIcon />
               </button>
               <input
                 type="text"
+                value={msg}
+                onChange={(e) => setMsg(e.target.value)}
                 placeholder="Type a message to the server..."
                 className="flex-1 bg-transparent border-none py-4 px-2 text-sm text-white focus:outline-none placeholder:text-slate-600"
               />
               <div className="flex items-center gap-1 pr-2">
                 <button className="p-2.5 text-slate-500 hover:text-amber-400 transition-colors">
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <SmileIcon />
                 </button>
-                <button className="p-3 bg-indigo-600 text-white rounded-2xl hover:bg-indigo-500 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-indigo-600/20">
-                  <svg
-                    className="w-5 h-5 rotate-90"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                  </svg>
+                <button
+                  className="p-3 bg-indigo-600 text-white rounded-2xl hover:bg-indigo-500 hover:scale-105 active:scale-95 transition-all shadow-lg shadow-indigo-600/20"
+                  onClick={handleSendMsg}
+                >
+                  <SendIcon />
                 </button>
               </div>
             </div>

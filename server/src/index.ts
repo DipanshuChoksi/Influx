@@ -1,5 +1,4 @@
-import http from 'http';
-import { applicationModule, databaseModule } from './modules';
+import { applicationModule, databaseModule, socketModule } from './modules';
 import { getEnvVariable } from './env';
 import { BaseError } from './shared';
 
@@ -15,7 +14,7 @@ export const startServer = async () => {
   }
 
   const app = applicationModule(['http://localhost:3000']);
-  const server = http.createServer(app);
+  const { server } = socketModule(app, ['http://localhost:3000']);
 
   // DB connection
   await databaseModule(MONGO_DB_URI);
