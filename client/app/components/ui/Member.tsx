@@ -22,16 +22,8 @@ function Member({
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <p
-          className={`text-xs font-bold truncate ${isMe ? "text-indigo-400" : "text-slate-300"}`}
-        >
-          {name}
-        </p>
-        {status && (
-          <p className="text-[9px] text-slate-600 truncate italic leading-none mt-1">
-            {status}
-          </p>
-        )}
+        <p className={`text-xs font-bold truncate ${isMe ? 'text-indigo-400' : 'text-slate-300'}`}>{name}</p>
+        {status && <p className="text-[9px] text-slate-600 truncate italic leading-none mt-1">{status}</p>}
       </div>
     </div>
   );

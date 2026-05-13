@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_BASE_URL } from "../consts/global";
+import axios from 'axios';
+import { API_BASE_URL } from '../consts/global';
 
 export const errorResponse = (message: string) => ({
   errors: {

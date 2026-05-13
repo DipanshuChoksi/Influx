@@ -1,8 +1,8 @@
-import Sidebar from "../components/ui/Sidebar";
-import UsersIcon from "../components/icons/UsersIcon";
-import AddIcon from "../components/icons/AddIcon";
-import UpcomingCard from "./components/UpcomingCard";
-import PartyCard from "./components/PartyCard";
+import Sidebar from '../components/ui/Sidebar';
+import UsersIcon from '../components/icons/UsersIcon';
+import AddIcon from '../components/icons/AddIcon';
+import UpcomingCard from './components/UpcomingCard';
+import PartyCard from './components/PartyCard';
 
 export default async function WatchPartiesPage() {
   return (
@@ -19,9 +19,7 @@ export default async function WatchPartiesPage() {
               <UsersIcon />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white leading-none">
-                Watch Parties
-              </h1>
+              <h1 className="text-lg font-bold text-white leading-none">Watch Parties</h1>
               <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-widest font-bold">
                 Host or join a live viewing session
               </p>
@@ -49,20 +47,14 @@ export default async function WatchPartiesPage() {
                 <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/50 text-indigo-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
                   Community
                 </span>
-                <span className="text-slate-400 text-xs font-medium">
-                  Synced Playback • Voice Chat • HD
-                </span>
+                <span className="text-slate-400 text-xs font-medium">Synced Playback • Voice Chat • HD</span>
               </div>
               <h2 className="text-4xl font-black text-white tracking-tight leading-tight">
-                Watch Together, <br />{" "}
-                <span className="text-indigo-500">
-                  No Matter Where You Are.
-                </span>
+                Watch Together, <br /> <span className="text-indigo-500">No Matter Where You Are.</span>
               </h2>
               <p className="text-slate-300 text-base leading-relaxed line-clamp-2">
-                Create a room, invite your friends, and enjoy your favorite
-                movies and shows with perfectly synchronized playback and
-                high-quality voice chat.
+                Create a room, invite your friends, and enjoy your favorite movies and shows with perfectly synchronized playback
+                and high-quality voice chat.
               </p>
               <div className="flex items-center gap-4 pt-2">
                 <button className="px-8 py-3.5 bg-indigo-500 text-white font-bold rounded-xl hover:bg-indigo-400 transition-all shadow-lg shadow-indigo-500/20 active:scale-95">
@@ -84,12 +76,7 @@ export default async function WatchPartiesPage() {
               </h3>
               <div className="flex items-center gap-2">
                 <button className="p-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 hover:text-white transition-colors">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -140,17 +127,10 @@ export default async function WatchPartiesPage() {
           <section className="space-y-6">
             <div className="flex items-center justify-between px-2">
               <h3 className="text-xl font-bold text-white">Upcoming Parties</h3>
-              <button className="text-sm font-semibold text-slate-500 hover:text-white transition-colors">
-                View Schedule
-              </button>
+              <button className="text-sm font-semibold text-slate-500 hover:text-white transition-colors">View Schedule</button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <UpcomingCard
-                title="Dune: Part Two"
-                time="Today at 9:00 PM"
-                host="System Admin"
-                reminders={124}
-              />
+              <UpcomingCard title="Dune: Part Two" time="Today at 9:00 PM" host="System Admin" reminders={124} />
               <UpcomingCard
                 title="Spider-Man: Across the Spider-Verse"
                 time="Tomorrow at 8:00 PM"

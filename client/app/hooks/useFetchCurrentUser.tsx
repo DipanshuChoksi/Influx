@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import useUser from "../contexts/user.context";
-import { fetchClientCurrentUser } from "../http/user.client.http";
-import { socket } from "../utils/socket";
+import { useEffect, useState } from 'react';
+import useUser from '../contexts/user.context';
+import { fetchClientCurrentUser } from '../http/user.client.http';
+import { socket } from '../utils/socket';
 
 export const useFetchCurrentUser = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -25,7 +25,7 @@ export const useFetchCurrentUser = () => {
         setLoading(false);
         socket.connect();
       } else {
-        setError(new Error("User not found"));
+        setError(new Error('User not found'));
         setLoading(false);
       }
     };

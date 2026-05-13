@@ -1,8 +1,8 @@
-import { getRequest } from "../utils/api";
+import { getRequest } from '../utils/api';
 
 export const fetchClientCurrentUser = async () => {
   try {
-    const response = await getRequest("users/me");
+    const response = await getRequest('users/me');
 
     if (!response || response.status !== 200) return null;
 

@@ -1,23 +1,17 @@
-"use client";
+'use client';
 
-import { signup, login } from "@/app/actions/auth";
-import { useActionState, useState } from "react";
-import Link from "next/link";
-import EyeOffIcon from "../icons/EyeOffIcon";
-import EyeIcon from "../icons/EyeIcon";
+import { signup, login } from '@/app/actions/auth';
+import { useActionState, useState } from 'react';
+import Link from 'next/link';
+import EyeOffIcon from '../icons/EyeOffIcon';
+import EyeIcon from '../icons/EyeIcon';
 
 export default function AuthPageClient() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
-  const [loginState, loginAction, loginPending] = useActionState(
-    login,
-    undefined,
-  );
-  const [signupState, signupAction, signupPending] = useActionState(
-    signup,
-    undefined,
-  );
+  const [loginState, loginAction, loginPending] = useActionState(login, undefined);
+  const [signupState, signupAction, signupPending] = useActionState(signup, undefined);
 
   const state = isLogin ? loginState : signupState;
   const action = isLogin ? loginAction : signupAction;
@@ -30,12 +24,10 @@ export default function AuthPageClient() {
           <div className="p-8 sm:p-10">
             <div className="space-y-2 text-center mb-10">
               <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-                {isLogin ? "Welcome back" : "Create an account"}
+                {isLogin ? 'Welcome back' : 'Create an account'}
               </h1>
               <p className="text-slate-500">
-                {isLogin
-                  ? "Enter your credentials to access your account"
-                  : "Sign up to get started"}
+                {isLogin ? 'Enter your credentials to access your account' : 'Sign up to get started'}
               </p>
             </div>
 
@@ -43,10 +35,7 @@ export default function AuthPageClient() {
               {/* Name (Signup Only) */}
               {!isLogin && (
                 <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-semibold text-slate-700 ml-1"
-                  >
+                  <label htmlFor="name" className="text-sm font-semibold text-slate-700 ml-1">
                     Name
                   </label>
                   <input
@@ -57,20 +46,13 @@ export default function AuthPageClient() {
                     required={!isLogin}
                     className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition-all duration-200 focus:border-slate-400 focus:bg-white focus:ring-4 focus:ring-slate-100"
                   />
-                  {state?.errors?.name && (
-                    <p className="text-xs font-medium text-red-500 mt-1 ml-1">
-                      {state.errors.name}
-                    </p>
-                  )}
+                  {state?.errors?.name && <p className="text-xs font-medium text-red-500 mt-1 ml-1">{state.errors.name}</p>}
                 </div>
               )}
 
               {/* Email */}
               <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="text-sm font-semibold text-slate-700 ml-1"
-                >
+                <label htmlFor="email" className="text-sm font-semibold text-slate-700 ml-1">
                   Email address
                 </label>
                 <input
@@ -81,20 +63,13 @@ export default function AuthPageClient() {
                   required
                   className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition-all duration-200 focus:border-slate-400 focus:bg-white focus:ring-4 focus:ring-slate-100"
                 />
-                {state?.errors?.email && (
-                  <p className="text-xs font-medium text-red-500 mt-1 ml-1">
-                    {state.errors.email}
-                  </p>
-                )}
+                {state?.errors?.email && <p className="text-xs font-medium text-red-500 mt-1 ml-1">{state.errors.email}</p>}
               </div>
 
               {/* Password */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between ml-1">
-                  <label
-                    htmlFor="password"
-                    className="text-sm font-semibold text-slate-700"
-                  >
+                  <label htmlFor="password" className="text-sm font-semibold text-slate-700">
                     Password
                   </label>
                   {isLogin && (
@@ -110,7 +85,7 @@ export default function AuthPageClient() {
                   <input
                     id="password"
                     name="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     required
                     className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 pr-12 text-sm outline-none transition-all duration-200 focus:border-slate-400 focus:bg-white focus:ring-4 focus:ring-slate-100"
@@ -124,9 +99,7 @@ export default function AuthPageClient() {
                   </button>
                 </div>
                 {state?.errors?.password && (
-                  <p className="text-xs font-medium text-red-500 mt-1 ml-1">
-                    {state.errors?.password}
-                  </p>
+                  <p className="text-xs font-medium text-red-500 mt-1 ml-1">{state.errors?.password}</p>
                 )}
               </div>
 
@@ -144,24 +117,17 @@ export default function AuthPageClient() {
                       fill="none"
                       viewBox="0 0 24 24"
                     >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path
                         className="opacity-75"
                         fill="currentColor"
                         d="4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    {isLogin ? "Logging in..." : "Signing up..."}
+                    {isLogin ? 'Logging in...' : 'Signing up...'}
                   </span>
                 ) : (
-                  <>{isLogin ? "Log in" : "Sign up"}</>
+                  <>{isLogin ? 'Log in' : 'Sign up'}</>
                 )}
               </button>
             </form>
@@ -169,15 +135,13 @@ export default function AuthPageClient() {
 
           <div className="px-8 py-6 bg-slate-50 border-t border-slate-100 text-center">
             <p className="text-sm text-slate-600">
-              {isLogin
-                ? "Don't have an account? "
-                : "Already have an account? "}
+              {isLogin ? "Don't have an account? " : 'Already have an account? '}
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
                 className="font-bold text-slate-900 hover:underline underline-offset-4"
               >
-                {isLogin ? "Create an account" : "Sign in"}
+                {isLogin ? 'Create an account' : 'Sign in'}
               </button>
             </p>
           </div>

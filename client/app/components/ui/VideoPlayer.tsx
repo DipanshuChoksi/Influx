@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import "plyr/dist/plyr.css";
+import { useEffect, useRef } from 'react';
+import 'plyr/dist/plyr.css';
 
 interface Props {
   title: string;
@@ -16,20 +16,11 @@ export default function VideoPlayer({ title, videoUrl, autoPlay }: Props) {
     let player: any;
 
     const initPlayer = async () => {
-      const Plyr = (await import("plyr")).default;
+      const Plyr = (await import('plyr')).default;
 
       if (videoRef.current) {
         player = new Plyr(videoRef.current, {
-          controls: [
-            "play-large",
-            "play",
-            "progress",
-            "current-time",
-            "mute",
-            "volume",
-            "settings",
-            "fullscreen",
-          ],
+          controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
         });
       }
     };

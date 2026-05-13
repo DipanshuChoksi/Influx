@@ -1,7 +1,7 @@
-"use client";
-import ShowCard from "../components/ui/ShowCard";
-import ContinueCard from "../components/ui/ContinueCard";
-import Sidebar from "../components/ui/Sidebar";
+'use client';
+import ShowCard from '../components/ui/ShowCard';
+import ContinueCard from '../components/ui/ContinueCard';
+import Sidebar from '../components/ui/Sidebar';
 
 export default function TvShowsPage() {
   return (
@@ -49,18 +49,14 @@ export default function TvShowsPage() {
                 <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/50 text-indigo-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
                   Featured Series
                 </span>
-                <span className="text-slate-300 text-xs font-medium">
-                  9.2 Rating • 2 Seasons • Drama
-                </span>
+                <span className="text-slate-300 text-xs font-medium">9.2 Rating • 2 Seasons • Drama</span>
               </div>
               <h2 className="text-6xl font-black text-white tracking-tight leading-none">
-                The Last <br />{" "}
-                <span className="text-indigo-500">Chronicles</span>
+                The Last <br /> <span className="text-indigo-500">Chronicles</span>
               </h2>
               <p className="text-slate-300 text-lg leading-relaxed line-clamp-3">
-                In a world reclaimed by nature, survival is just the beginning.
-                Follow the journey of survivors as they navigate the remnants of
-                civilization and face the ultimate choice.
+                In a world reclaimed by nature, survival is just the beginning. Follow the journey of survivors as they navigate
+                the remnants of civilization and face the ultimate choice.
               </p>
               <div className="flex items-center gap-4 pt-2">
                 <button className="px-8 py-3.5 bg-white text-slate-950 font-bold rounded-xl hover:bg-indigo-400 hover:text-white transition-all flex items-center gap-2 shadow-lg shadow-white/5 active:scale-95">
@@ -79,38 +75,14 @@ export default function TvShowsPage() {
           {/* Continue Watching */}
           <section className="space-y-6">
             <div className="flex items-center justify-between px-2">
-              <h3 className="text-xl font-bold text-white">
-                Continue Watching
-              </h3>
-              <button className="text-sm font-semibold text-slate-500 hover:text-white transition-colors">
-                See all
-              </button>
+              <h3 className="text-xl font-bold text-white">Continue Watching</h3>
+              <button className="text-sm font-semibold text-slate-500 hover:text-white transition-colors">See all</button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ContinueCard
-                title="Better Call Saul"
-                episode="S5 : E3"
-                progress={65}
-                image="bg-amber-500/10"
-              />
-              <ContinueCard
-                title="The Bear"
-                episode="S2 : E1"
-                progress={20}
-                image="bg-blue-500/10"
-              />
-              <ContinueCard
-                title="Succession"
-                episode="S4 : E10"
-                progress={90}
-                image="bg-slate-500/10"
-              />
-              <ContinueCard
-                title="Beef"
-                episode="S1 : E5"
-                progress={45}
-                image="bg-red-500/10"
-              />
+              <ContinueCard title="Better Call Saul" episode="S5 : E3" progress={65} image="bg-amber-500/10" />
+              <ContinueCard title="The Bear" episode="S2 : E1" progress={20} image="bg-blue-500/10" />
+              <ContinueCard title="Succession" episode="S4 : E10" progress={90} image="bg-slate-500/10" />
+              <ContinueCard title="Beef" episode="S1 : E5" progress={45} image="bg-red-500/10" />
             </div>
           </section>
 
@@ -133,20 +105,9 @@ export default function TvShowsPage() {
 
           {/* Genres */}
           <section className="space-y-6">
-            <h3 className="text-xl font-bold text-white px-2">
-              Popular Genres
-            </h3>
+            <h3 className="text-xl font-bold text-white px-2">Popular Genres</h3>
             <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-              {[
-                "Action",
-                "Sci-Fi",
-                "Documentary",
-                "Anime",
-                "Horror",
-                "Comedy",
-                "Mystery",
-                "Fantasy",
-              ].map((genre) => (
+              {['Action', 'Sci-Fi', 'Documentary', 'Anime', 'Horror', 'Comedy', 'Mystery', 'Fantasy'].map((genre) => (
                 <button
                   key={genre}
                   className="px-6 py-3 bg-slate-900 border border-slate-800 rounded-2xl text-sm font-bold text-slate-400 hover:text-white hover:border-indigo-500/50 hover:bg-slate-800 transition-all whitespace-nowrap"

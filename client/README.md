@@ -20,9 +20,9 @@ The client is built using the **Next.js App Router** architecture, focusing on a
 
 The client uses environment variables for configuration. Create a `.env` file in the `client/` directory.
 
-| Variable | Required | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `NEXT_PUBLIC_API_URL` | ✅ | Base URL for the backend API | `http://localhost:5000/api/` |
+| Variable              | Required | Description                  | Example                      |
+| :-------------------- | :------- | :--------------------------- | :--------------------------- |
+| `NEXT_PUBLIC_API_URL` | ✅       | Base URL for the backend API | `http://localhost:5000/api/` |
 
 > Note: Currently, the API URL is also configured in `app/consts/global.ts`.
 
@@ -30,12 +30,12 @@ The client uses environment variables for configuration. Create a `.env` file in
 
 ## Scripts
 
-| Command | Description |
-| :--- | :--- |
-| `npm run dev` | Starts the development server on `http://localhost:3000` |
-| `npm run build` | Creates an optimized production build |
-| `npm run start` | Starts the production server |
-| `npm run lint` | Runs ESLint to check for code quality issues |
+| Command         | Description                                              |
+| :-------------- | :------------------------------------------------------- |
+| `npm run dev`   | Starts the development server on `http://localhost:3000` |
+| `npm run build` | Creates an optimized production build                    |
+| `npm run start` | Starts the production server                             |
+| `npm run lint`  | Runs ESLint to check for code quality issues             |
 
 ---
 
@@ -43,15 +43,15 @@ The client uses environment variables for configuration. Create a `.env` file in
 
 The project follows the Next.js file-system based routing:
 
-| Route | Description |
-| :--- | :--- |
-| `/` | Landing / Authentication page (Redirects to `/home` if already logged in) |
-| `/home` | Main dashboard with media highlights |
-| `/movies` | Browse and watch movies |
-| `/tv-shows` | Browse and watch TV shows |
-| `/watch-parties` | Create or join synchronized watch rooms |
-| `/global-chat` | Server-wide real-time chat |
-| `/profile` | User settings and profile management |
+| Route            | Description                                                               |
+| :--------------- | :------------------------------------------------------------------------ |
+| `/`              | Landing / Authentication page (Redirects to `/home` if already logged in) |
+| `/home`          | Main dashboard with media highlights                                      |
+| `/movies`        | Browse and watch movies                                                   |
+| `/tv-shows`      | Browse and watch TV shows                                                 |
+| `/watch-parties` | Create or join synchronized watch rooms                                   |
+| `/global-chat`   | Server-wide real-time chat                                                |
+| `/profile`       | User settings and profile management                                      |
 
 ---
 
@@ -60,7 +60,7 @@ The project follows the Next.js file-system based routing:
 The client is prepared for scalable state management using **Zustand**:
 
 - **Local State**: Used for simple component-level interactions via React `useState`.
-- **Global Store**: Zustand is integrated for managing shared state like user sessions, chat messages, and room synchronization (located in `app/lib/store/` - *to be implemented*).
+- **Global Store**: Zustand is integrated for managing shared state like user sessions, chat messages, and room synchronization (located in `app/lib/store/` - _to be implemented_).
 - **Form State**: Managed using Next.js `useFormState` for seamless server action integration.
 
 ---
@@ -74,8 +74,9 @@ API communication is centralized using **Axios**:
 - **Endpoints**: Defined relative to the `API_BASE_URL` constant.
 
 Example usage in an action:
+
 ```typescript
-const response = await postRequest("auth/login", credentials);
+const response = await postRequest('auth/login', credentials);
 ```
 
 ---

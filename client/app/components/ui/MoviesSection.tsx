@@ -3,9 +3,7 @@ function MediaSection({ title }: { title: string }) {
     <section className="space-y-6">
       <div className="flex items-center justify-between px-2">
         <h3 className="text-xl font-bold text-white">{title}</h3>
-        <button className="text-sm font-semibold text-slate-500 hover:text-white transition-colors">
-          See all
-        </button>
+        <button className="text-sm font-semibold text-slate-500 hover:text-white transition-colors">See all</button>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
         {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -14,12 +12,8 @@ function MediaSection({ title }: { title: string }) {
             className="aspect-[2/3] bg-slate-900 rounded-xl border border-slate-800 overflow-hidden group cursor-pointer hover:ring-2 hover:ring-indigo-500 transition-all relative"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-4">
-              <h5 className="text-white text-xs font-bold leading-tight">
-                Project Influx Movie {i}
-              </h5>
-              <p className="text-slate-400 text-[10px] mt-1 italic">
-                Action, Sci-Fi
-              </p>
+              <h5 className="text-white text-xs font-bold leading-tight">Project Influx Movie {i}</h5>
+              <p className="text-slate-400 text-[10px] mt-1 italic">Action, Sci-Fi</p>
             </div>
             <div className="h-full w-full bg-slate-800 flex items-center justify-center">
               <svg

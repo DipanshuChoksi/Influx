@@ -1,10 +1,6 @@
-import MovieDetailClient from "../../components/ui/MovieDetailClient";
+import MovieDetailClient from '../../components/ui/MovieDetailClient';
 
-export default async function MovieDetailPage({
-  params,
-}: {
-  params: Promise<{ movie: string }>;
-}) {
+export default async function MovieDetailPage({ params }: { params: Promise<{ movie: string }> }) {
   const { movie } = await params;
 
   // Decoding the movie title from URL

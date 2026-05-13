@@ -1,5 +1,5 @@
-import Sidebar from "../components/ui/Sidebar";
-import MovieCard from "../components/ui/MovieCard";
+import Sidebar from '../components/ui/Sidebar';
+import MovieCard from '../components/ui/MovieCard';
 
 export default async function MoviesPage() {
   return (
@@ -47,17 +47,14 @@ export default async function MoviesPage() {
                 <span className="px-3 py-1 bg-white text-slate-950 text-[10px] font-black uppercase tracking-widest rounded-md">
                   4K Ultra HD
                 </span>
-                <span className="text-indigo-400 text-xs font-bold tracking-widest uppercase">
-                  IMDb 8.9
-                </span>
+                <span className="text-indigo-400 text-xs font-bold tracking-widest uppercase">IMDb 8.9</span>
               </div>
               <h2 className="text-7xl font-black text-white tracking-tight leading-none uppercase">
-                Neon <br />{" "}
-                <span className="text-indigo-500 italic">Eclipse</span>
+                Neon <br /> <span className="text-indigo-500 italic">Eclipse</span>
               </h2>
               <p className="text-slate-200 text-lg leading-relaxed line-clamp-3 font-medium">
-                In a dystopian future where memories are a currency, one man
-                discovers a forgotten truth that could crash the entire system.
+                In a dystopian future where memories are a currency, one man discovers a forgotten truth that could crash the
+                entire system.
               </p>
               <div className="flex items-center gap-4 pt-2">
                 <button className="px-10 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 transition-all flex items-center gap-3 shadow-xl shadow-indigo-600/20 active:scale-95">
@@ -76,9 +73,7 @@ export default async function MoviesPage() {
           {/* Trending Row */}
           <section className="space-y-6">
             <div className="flex items-center justify-between px-2">
-              <h3 className="text-2xl font-black text-white tracking-tight">
-                Trending Now
-              </h3>
+              <h3 className="text-2xl font-black text-white tracking-tight">Trending Now</h3>
               <button className="text-xs font-bold text-indigo-400 hover:text-indigo-300 uppercase tracking-widest transition-colors">
                 See all
               </button>
@@ -90,7 +85,7 @@ export default async function MoviesPage() {
                   title={`Movie Title ${i}`}
                   year="2024"
                   rating={(Math.random() * (9.5 - 6.5) + 6.5).toFixed(1)}
-                  quality={i % 2 === 0 ? "4K" : "HD"}
+                  quality={i % 2 === 0 ? '4K' : 'HD'}
                 />
               ))}
             </div>
@@ -99,9 +94,7 @@ export default async function MoviesPage() {
           {/* Recently Added */}
           <section className="space-y-6">
             <div className="flex items-center justify-between px-2">
-              <h3 className="text-2xl font-black text-white tracking-tight">
-                Recently Added
-              </h3>
+              <h3 className="text-2xl font-black text-white tracking-tight">Recently Added</h3>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {[7, 8, 9, 10, 11, 12].map((i) => (
@@ -118,27 +111,14 @@ export default async function MoviesPage() {
 
           {/* Categories Grid */}
           <section className="space-y-6">
-            <h3 className="text-2xl font-black text-white tracking-tight px-2">
-              Explore Genres
-            </h3>
+            <h3 className="text-2xl font-black text-white tracking-tight px-2">Explore Genres</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-              {[
-                "Action",
-                "Sci-Fi",
-                "Thriller",
-                "Drama",
-                "Horror",
-                "Comedy",
-                "Documentary",
-                "Anime",
-              ].map((genre) => (
+              {['Action', 'Sci-Fi', 'Thriller', 'Drama', 'Horror', 'Comedy', 'Documentary', 'Anime'].map((genre) => (
                 <button
                   key={genre}
                   className="h-24 bg-slate-900 border border-slate-800 rounded-2xl flex flex-col items-center justify-center gap-2 hover:bg-indigo-600 hover:border-indigo-500 group transition-all"
                 >
-                  <span className="text-sm font-bold text-slate-400 group-hover:text-white transition-colors">
-                    {genre}
-                  </span>
+                  <span className="text-sm font-bold text-slate-400 group-hover:text-white transition-colors">{genre}</span>
                 </button>
               ))}
             </div>

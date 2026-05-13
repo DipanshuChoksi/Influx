@@ -13,9 +13,7 @@ function RoomCard({
 }) {
   return (
     <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 hover:bg-slate-900/60 transition-all group cursor-pointer">
-      <div
-        className={`w-full h-32 ${image} rounded-xl mb-4 flex items-center justify-center relative overflow-hidden`}
-      >
+      <div className={`w-full h-32 ${image} rounded-xl mb-4 flex items-center justify-center relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
         <svg
           className="w-8 h-8 text-slate-600 group-hover:scale-110 group-hover:text-indigo-500 transition-all duration-300"
@@ -29,12 +27,7 @@ function RoomCard({
             strokeWidth="2"
             d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
           />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       </div>
       <h4 className="text-white font-bold text-sm truncate">{title}</h4>
@@ -57,9 +50,7 @@ function RoomCard({
             </div>
           )}
         </div>
-        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-          {participants} active
-        </span>
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{participants} active</span>
       </div>
     </div>
   );

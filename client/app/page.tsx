@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import AuthPageClient from "@/app/components/ui/AuthPageClient";
-import { useFetchCurrentUser } from "./hooks/useFetchCurrentUser";
-import useUser from "./contexts/user.context";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import AuthPageClient from '@/app/components/ui/AuthPageClient';
+import { useFetchCurrentUser } from './hooks/useFetchCurrentUser';
+import useUser from './contexts/user.context';
 
 export default function Page() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Page() {
 
   useEffect(() => {
     if (user) {
-      router.replace("/home");
+      router.replace('/home');
     }
   }, [user, router]);
 

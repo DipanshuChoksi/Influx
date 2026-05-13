@@ -1,6 +1,6 @@
-import MediaSection from "../components/ui/MoviesSection";
-import RoomCard from "../components/ui/RoomCard";
-import Sidebar from "../components/ui/Sidebar";
+import MediaSection from '../components/ui/MoviesSection';
+import RoomCard from '../components/ui/RoomCard';
+import Sidebar from '../components/ui/Sidebar';
 
 export default async function HomePage() {
   return (
@@ -48,18 +48,14 @@ export default async function HomePage() {
                 <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/50 text-indigo-400 text-[10px] font-bold uppercase tracking-widest rounded-full">
                   Featured Movie
                 </span>
-                <span className="text-slate-400 text-xs font-medium">
-                  4K • HDR • 2h 24m
-                </span>
+                <span className="text-slate-400 text-xs font-medium">4K • HDR • 2h 24m</span>
               </div>
               <h2 className="text-5xl font-black text-white tracking-tight leading-none">
-                Interstellar <br />{" "}
-                <span className="text-indigo-500">Voyage</span>
+                Interstellar <br /> <span className="text-indigo-500">Voyage</span>
               </h2>
               <p className="text-slate-300 text-lg leading-relaxed line-clamp-3">
-                Experience the ultimate journey across space and time. A team of
-                explorers travel through a wormhole in space in an attempt to
-                ensure humanity's survival.
+                Experience the ultimate journey across space and time. A team of explorers travel through a wormhole in space in
+                an attempt to ensure humanity's survival.
               </p>
               <div className="flex items-center gap-4 pt-2">
                 <button className="px-8 py-3.5 bg-white text-slate-950 font-bold rounded-xl hover:bg-indigo-400 transition-all flex items-center gap-2 shadow-lg shadow-white/5 active:scale-95">
@@ -87,34 +83,10 @@ export default async function HomePage() {
               </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <RoomCard
-                title="Weekend Movie Night"
-                host="Alice"
-                media="Inception"
-                participants={4}
-                image="bg-indigo-500/10"
-              />
-              <RoomCard
-                title="Anime Stream"
-                host="Bob"
-                media="Attack on Titan"
-                participants={12}
-                image="bg-purple-500/10"
-              />
-              <RoomCard
-                title="Friends Reunion"
-                host="Charlie"
-                media="Friends S01E01"
-                participants={6}
-                image="bg-pink-500/10"
-              />
-              <RoomCard
-                title="Late Night Horror"
-                host="Diana"
-                media="The Conjuring"
-                participants={2}
-                image="bg-red-500/10"
-              />
+              <RoomCard title="Weekend Movie Night" host="Alice" media="Inception" participants={4} image="bg-indigo-500/10" />
+              <RoomCard title="Anime Stream" host="Bob" media="Attack on Titan" participants={12} image="bg-purple-500/10" />
+              <RoomCard title="Friends Reunion" host="Charlie" media="Friends S01E01" participants={6} image="bg-pink-500/10" />
+              <RoomCard title="Late Night Horror" host="Diana" media="The Conjuring" participants={2} image="bg-red-500/10" />
             </div>
           </section>
 
