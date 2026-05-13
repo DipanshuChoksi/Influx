@@ -28,3 +28,11 @@ export async function getUserByName(name: string) {
     throw error;
   }
 }
+export async function updateUser(id: string, updateData: any) {
+  try {
+    const user = await UserModel.findByIdAndUpdate(id, updateData, { new: true }).select('-password');
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}

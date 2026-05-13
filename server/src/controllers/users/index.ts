@@ -1,4 +1,4 @@
-import { getAllUsers, getUserById, getUserByName } from '@/repositories';
+import { getAllUsers, getUserById, getUserByName, updateUser } from '@/repositories';
 import { ApiError } from '@/shared';
 import { HttpStatusCode } from '@/types';
 import { NextFunction, Request, Response } from 'express';
@@ -49,6 +49,26 @@ export const GetUserByNameController = async (req: Request, res: Response, next:
 
     res.status(HttpStatusCode.OK).json({
       message: 'User fetched successfully',
+      user,
+    });
+  } catch (error: any) {
+    next(error);
+  }
+};
+
+export const UpdateUserController = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId = (req as any)?.user?._id;
+    const { name, email } = req.body;
+
+    if (!userId) {
+      throw new ApiError('Unauthorized', 'updateUserController', HttpStatusCode.UNAUTHORIZED, true);
+    }
+
+    const user = await updateUser(userId, { name, email });
+
+    res.status(HttpStatusCode.OK).json({
+      message: 'Profile updated successfully',
       user,
     });
   } catch (error: any) {

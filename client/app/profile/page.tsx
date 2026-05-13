@@ -1,17 +1,24 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import MovieCard from '@/app/components/ui/MovieCard';
 import Sidebar from '@/app/components/ui/Sidebar';
 import useUser from '@/app/contexts/user.context';
+import Loading from '@/app/components/ui/Loading';
 
 function ProfilePage() {
-  // const user = useUser((state) => state.user);
-  const user = {
-    name: 'John Doe',
-    email: '[EMAIL_ADDRESS]',
-  };
+  const user = useUser((state) => state.user);
+  const router = useRouter();
 
-  if (!user) return null;
+  useEffect(() => {
+    if (!user) {
+      router.replace('/');
+    }
+  }, [user, router]);
+
+  if (!user) return <Loading />;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 flex overflow-hidden">
@@ -22,9 +29,12 @@ function ProfilePage() {
         <header className="h-20 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50 px-8 flex items-center justify-between z-40 shrink-0">
           <h1 className="text-xl font-black text-white uppercase tracking-wider">User Profile</h1>
           <div className="flex items-center gap-4">
-            <button className="px-4 py-2 bg-indigo-600/10 text-indigo-400 border border-indigo-500/20 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-indigo-600/20 transition-all">
+            <Link
+              href="/profile/manage"
+              className="px-4 py-2 bg-indigo-600/10 text-indigo-400 border border-indigo-500/20 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all shadow-lg shadow-indigo-500/5"
+            >
               Edit Profile
-            </button>
+            </Link>
           </div>
         </header>
 
@@ -60,7 +70,8 @@ function ProfilePage() {
                     Pro Member
                   </span>
                   <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-[10px] font-bold text-slate-300 uppercase tracking-widest">
-                    Joined Oct 2023
+                    Joined{' '}
+                    {new Date(user.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                   </span>
                 </div>
               </div>
@@ -125,9 +136,12 @@ function ProfilePage() {
               <div className="space-y-6 bg-slate-900/50 p-8 rounded-3xl border border-slate-800">
                 <h3 className="text-xl font-black text-white tracking-tight">Account Settings</h3>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-slate-950/50 rounded-2xl border border-slate-800/50">
+                  <Link
+                    href="/profile/manage"
+                    className="flex items-center justify-between p-4 bg-slate-950/50 rounded-2xl border border-slate-800/50 hover:bg-indigo-600/5 transition-all group"
+                  >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400">
+                      <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-indigo-400 transition-colors">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path
                             strokeLinecap="round"
@@ -144,12 +158,12 @@ function ProfilePage() {
                         </p>
                       </div>
                     </div>
-                    <button className="text-indigo-400">
+                    <div className="text-slate-600 group-hover:text-indigo-400 transition-colors">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
-                    </button>
-                  </div>
+                    </div>
+                  </Link>
                   <div className="flex items-center justify-between p-4 bg-slate-950/50 rounded-2xl border border-slate-800/50">
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400">

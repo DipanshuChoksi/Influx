@@ -1,4 +1,4 @@
-import { getRequest } from '../utils/api';
+import { getRequest, patchRequest } from '../utils/api';
 
 export const fetchClientCurrentUser = async () => {
   try {
@@ -25,6 +25,18 @@ export const fetchAllUsers = async () => {
 export const fetchUserByName = async (name: string) => {
   try {
     const response = await getRequest(`users/${name}`);
+
+    if (!response || response.status !== 200) return null;
+
+    return response.data.user;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const updateProfile = async (updateData: { name: string; email: string }) => {
+  try {
+    const response = await patchRequest('users/update', updateData);
 
     if (!response || response.status !== 200) return null;
 
