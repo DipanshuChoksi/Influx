@@ -42,6 +42,7 @@ export const SignupController = async (req: Request, res: Response) => {
     await UserModel.create({ email, password: hashedPassword, name });
     res.status(HttpStatusCode.CREATED).json({ message: 'User created successfully' });
   } catch (error: any) {
+    console.error(error.message);
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
   }
 };

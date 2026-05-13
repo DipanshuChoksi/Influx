@@ -9,9 +9,14 @@ import { socket } from '@/app/utils/socket';
 import { useEffect, useState } from 'react';
 import { getRequest } from '@/app/utils/api';
 import useUser from '@/app/contexts/user.context';
+import { User } from '@/app/types';
 import { fetchMessages } from './fetchMessages';
 
-function ChatClientPage() {
+interface ChatClientPageProps {
+  receiver: User;
+}
+
+function ChatClientPage({ receiver }: ChatClientPageProps) {
   const [message, setMessage] = useState('');
   const user = useUser((state) => state.user);
   const [messages, setMessages] = useState<
@@ -21,19 +26,17 @@ function ChatClientPage() {
       content: string;
     }>
   >([]);
-  const receiver = {
-    _id: user?._id == '69e659869698fa0fce8af560' ? '69e8b97443ce383ee443987e' : '69e659869698fa0fce8af560',
-  };
 
   useEffect(() => {
     if (!socket.connected) {
       socket.connect();
     }
 
-    socket.emit('join', '12345');
+    const roomId = [user?._id, receiver._id].sort().join('-');
+    socket.emit('join', roomId);
 
     if (user) {
-      fetchMessages({ userId: user._id, receiverId: receiver._id }).then((data) => {
+      fetchMessages({ userId: user._id, receiverId: receiver._id, receiverName: receiver.name }).then((data) => {
         setMessages(data);
       });
     }
@@ -42,7 +45,7 @@ function ChatClientPage() {
       setMessages((prev) => [
         ...prev,
         {
-          user: msg.sender === user?._id ? 'You' : 'Alice',
+          user: msg.sender === user?._id ? 'You' : receiver.name,
           time: new Date(msg.createdAt || Date.now()).toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
@@ -57,16 +60,17 @@ function ChatClientPage() {
     return () => {
       socket.off('receivedMsg', handleMessage);
     };
-  }, [user]);
+  }, [user, receiver._id]);
 
   const handleSendMsg = () => {
     if (!message.trim() || !user) return;
 
+    const roomId = [user._id, receiver._id].sort().join('-');
     socket.emit('sendMsg', {
       message,
       receiverId: receiver._id,
       senderId: user._id,
-      roomId: '12345',
+      roomId,
     });
 
     setMessage('');
@@ -109,17 +113,17 @@ function ChatClientPage() {
           </div>
         </header>
 
-        {/* Message List */}
-        <div className="flex-1 overflow-y-auto p-8 space-y-8 scrollbar-hide">
-          {/* <Message
-            user="Alice"
-            time="10:24 AM"
-            content="Hey everyone! Anyone up for a watch party tonight? 🍿"
-            color="text-pink-400"
-            bg="bg-pink-400/10"
-          /> */}
+        <div className="flex-1 overflow-y-auto p-8 space-y-6 scrollbar-hide">
           {messages.map((m, i) => (
-            <Message key={i} user={m.user} time={m.time} content={m.content} color="text-pink-400" bg="bg-pink-400/10" />
+            <Message
+              key={i}
+              user={m.user}
+              time={m.time}
+              content={m.content}
+              isMe={m.user === 'You'}
+              color={m.user === 'You' ? 'text-indigo-400' : 'text-purple-400'}
+              bg={m.user === 'You' ? 'bg-indigo-400/10' : 'bg-purple-400/10'}
+            />
           ))}
         </div>
 

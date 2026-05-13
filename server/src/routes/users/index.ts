@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { GetUserController, VerifiedUserController } from '@/controllers';
+import { GetUserController, GetAllUsersController, GetUserByNameController } from '@/controllers';
 
 const router = Router();
 
-router.get('/', VerifiedUserController);
+router.get('/', GetAllUsersController);
 router.get('/me', GetUserController);
+router.get('/:name', GetUserByNameController);
 
 export default router;

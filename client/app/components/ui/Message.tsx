@@ -24,10 +24,10 @@ function Message({
           <span className="text-[10px] text-slate-600 font-medium">{time}</span>
         </div>
         <div
-          className={`p-4 rounded-2xl text-sm leading-relaxed ${
+          className={`p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${
             isMe
-              ? 'bg-indigo-600 text-white rounded-tr-none shadow-lg shadow-indigo-600/10'
-              : 'bg-slate-900/80 text-slate-300 border border-slate-800 rounded-tl-none'
+              ? 'bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-tr-none shadow-indigo-500/20'
+              : 'bg-slate-900/90 text-slate-200 border border-slate-800/50 rounded-tl-none shadow-black/20'
           }`}
         >
           {content}

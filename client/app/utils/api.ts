@@ -9,7 +9,8 @@ export const errorResponse = (message: string) => ({
 
 export async function postRequest(endpoint: string, payload?: any) {
   try {
-    const response = await axios.post(`${API_BASE_URL}${endpoint}`, payload, {
+    const url = `${API_BASE_URL}${endpoint}`;
+    const response = await axios.post(url, payload, {
       withCredentials: true,
     });
     return response;
