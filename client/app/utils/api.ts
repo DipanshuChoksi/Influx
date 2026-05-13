@@ -21,7 +21,8 @@ export async function postRequest(endpoint: string, payload?: any) {
 
 export async function getRequest(endpoint: string) {
   try {
-    const response = await axios.get(`${API_BASE_URL}${endpoint}`, {
+    const url = `${API_BASE_URL}${endpoint}`;
+    const response = await axios.get(url, {
       withCredentials: true,
     });
     return response;

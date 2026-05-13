@@ -1,6 +1,7 @@
 import { applicationModule, databaseModule, socketModule } from './modules';
 import { getEnvVariable } from './env';
 import { BaseError } from './shared';
+import listEndpoints from 'express-list-endpoints';
 
 export const startServer = async () => {
   const PORT: number = Number(getEnvVariable('PORT') ?? '');
@@ -21,6 +22,7 @@ export const startServer = async () => {
 
   server.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}/`);
+    console.log(listEndpoints(app));
   });
 };
 

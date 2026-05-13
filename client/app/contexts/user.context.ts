@@ -1,9 +1,15 @@
 import { create } from "zustand";
-import { User } from "../types/User.types";
+import { User } from "../types";
 
-const useUser = create((set) => ({
-  user: <User | null>null,
-  setUser: (user: User) => set({ user }),
+interface UserState {
+  user: User | null;
+  setUser: (user: User) => void;
+}
+
+const useUser = create<UserState>((set) => ({
+  user: null,
+  isAuthenticated: false,
+  setUser: (user) => set({ user }),
 }));
 
 export default useUser;

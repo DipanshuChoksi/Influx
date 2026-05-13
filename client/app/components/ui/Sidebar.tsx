@@ -42,7 +42,7 @@ function Sidebar() {
           icon={<UsersIcon />}
           label="Watch Parties"
         />
-        <NavItem href="/global-chat" icon={<ChatIcon />} label="Global Chat" />
+        <NavItem href="/chat" icon={<ChatIcon />} label="Chat" />
         <NavItem href="/profile" icon={<UserIcon />} label="Profile" />
       </nav>
 

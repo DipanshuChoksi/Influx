@@ -1,6 +1,5 @@
 import { API_BASE_URL } from "../consts/global";
 import { cookies } from "next/headers";
-import { getRequest } from "../utils/api";
 
 export const fetchCurrentUser = async () => {
   try {

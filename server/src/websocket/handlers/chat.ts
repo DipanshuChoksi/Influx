@@ -4,5 +4,6 @@ import { handleJoinRoom, handleSendMessage, handleStartWatchParty } from '../ser
 export const registerChatHandlers = (socket: Socket, io: Server) => {
   socket.on('join', handleJoinRoom(socket, io));
   socket.on('sendMsg', handleSendMessage(socket, io));
+  // socket.on('recMsg', handleSendMessage(socket, io));
   socket.on('start-watch-party', handleStartWatchParty(socket, io));
 };

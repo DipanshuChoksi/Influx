@@ -3,7 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { BaseError, ErrorHandler, logger } from '@/shared';
-import { authRouter, UserRouter } from '../routes/index';
+import { authRouter, UserRouter, messageRouter } from '../routes/index';
 import { TestController } from '@/controllers';
 import { authMiddleware } from '@/middlewares/auth';
 
@@ -29,6 +29,7 @@ const applicationModule = (ORIGINS: string[] = []): Application => {
   app.use('/api/auth', authRouter);
 
   app.use('/api/users', authMiddleware, UserRouter);
+  app.use('/api/messages', authMiddleware, messageRouter);
 
   // Error Handling
   app.use(errorMiddleware);
