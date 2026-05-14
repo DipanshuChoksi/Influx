@@ -71,7 +71,9 @@ function ProfilePage() {
                   </span>
                   <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-[10px] font-bold text-slate-300 uppercase tracking-widest">
                     Joined{' '}
-                    {new Date(user.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                    {user.createdAt
+                      ? new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                      : 'Recently'}
                   </span>
                 </div>
               </div>
@@ -124,7 +126,7 @@ function ProfilePage() {
                     key={i}
                     title={`Watchlist Movie ${i}`}
                     year="2024"
-                    rating={(Math.random() * (9.5 - 6.5) + 6.5).toFixed(1)}
+                    rating={(8.5 + ((i * 0.1) % 1)).toFixed(1)}
                     quality="4K"
                   />
                 ))}

@@ -93,12 +93,7 @@ export default function TvShowsPage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <ShowCard
-                  key={i}
-                  title={`Show Title ${i}`}
-                  seasons={Math.floor(Math.random() * 5) + 1}
-                  rating={(Math.random() * (9.9 - 7.0) + 7.0).toFixed(1)}
-                />
+                <ShowCard key={i} title={`Show Title ${i}`} seasons={(i % 5) + 1} rating={(7.0 + ((i * 0.5) % 2.9)).toFixed(1)} />
               ))}
             </div>
           </section>

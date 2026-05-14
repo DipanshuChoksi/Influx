@@ -6,7 +6,7 @@ import 'plyr/dist/plyr.css';
 interface Props {
   title: string;
   videoUrl: string;
-  autoPlay: boolean;
+  autoPlay?: boolean;
 }
 
 export default function VideoPlayer({ title, videoUrl, autoPlay }: Props) {
@@ -35,9 +35,16 @@ export default function VideoPlayer({ title, videoUrl, autoPlay }: Props) {
   }, []);
 
   return (
-    <div className="h-full w-full rounded-xl overflow-hidden">
-      <video ref={videoRef} className="w-full h-full" controls playsInline>
-        <source src={videoUrl} type="video/mp4" />
+    <div className="h-full w-full bg-slate-900 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        className="w-full h-full"
+        controls
+        playsInline
+        autoPlay={autoPlay}
+        poster="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=2000"
+      >
+        <source src={videoUrl} />
       </video>
     </div>
   );

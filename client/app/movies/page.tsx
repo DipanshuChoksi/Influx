@@ -70,27 +70,6 @@ export default async function MoviesPage() {
             </div>
           </section>
 
-          {/* Trending Row */}
-          <section className="space-y-6">
-            <div className="flex items-center justify-between px-2">
-              <h3 className="text-2xl font-black text-white tracking-tight">Trending Now</h3>
-              <button className="text-xs font-bold text-indigo-400 hover:text-indigo-300 uppercase tracking-widest transition-colors">
-                See all
-              </button>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <MovieCard
-                  key={i}
-                  title={`Movie Title ${i}`}
-                  year="2024"
-                  rating={(Math.random() * (9.5 - 6.5) + 6.5).toFixed(1)}
-                  quality={i % 2 === 0 ? '4K' : 'HD'}
-                />
-              ))}
-            </div>
-          </section>
-
           {/* Recently Added */}
           <section className="space-y-6">
             <div className="flex items-center justify-between px-2">
@@ -102,7 +81,7 @@ export default async function MoviesPage() {
                   key={i}
                   title={`New Release ${i}`}
                   year="2024"
-                  rating={(Math.random() * (9.5 - 6.5) + 6.5).toFixed(1)}
+                  rating={(8.0 + ((i * 0.1) % 1.5)).toFixed(1)}
                   quality="4K"
                 />
               ))}

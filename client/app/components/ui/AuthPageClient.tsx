@@ -46,7 +46,9 @@ export default function AuthPageClient() {
                     required={!isLogin}
                     className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm outline-none transition-all duration-200 focus:border-slate-400 focus:bg-white focus:ring-4 focus:ring-slate-100"
                   />
-                  {state?.errors?.name && <p className="text-xs font-medium text-red-500 mt-1 ml-1">{state.errors.name}</p>}
+                  {(state?.errors as any)?.name && (
+                    <p className="text-xs font-medium text-red-500 mt-1 ml-1">{(state?.errors as any)?.name}</p>
+                  )}
                 </div>
               )}
 

@@ -5,7 +5,7 @@ import Link from 'next/link';
 function ChatListItem({ friend }: { friend: User }) {
   const lastMessage = 'Hey! Are you coming to the watch party tonight? 🍿';
   const time = '2m ago';
-  const isOnline = Math.random() > 0.3; // Just for visual variety
+  const isOnline = friend.name.length % 2 === 0;
 
   return (
     <Link
