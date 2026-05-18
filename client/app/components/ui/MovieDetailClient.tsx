@@ -1,17 +1,52 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import BackButton from './BackButton';
 import VideoPlayer from './VideoPlayer';
 import MovieCard from './MovieCard';
+import { API_BASE_URL } from '../../consts/global';
+import axios from 'axios';
 
 interface Props {
-  movieTitle: string;
+  movieId: string;
 }
 
-export default function MovieDetailClient({ movieTitle }: Props) {
+export default function MovieDetailClient({ movieId }: Props) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const [movieData, setMovieData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}media/movies/${movieId}`);
+        setMovieData(res.data.data);
+      } catch (err) {
+        console.error('Failed to fetch movie details:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMovie();
+  }, [movieId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!movieData) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center text-white">
+        <h2 className="text-2xl font-bold mb-4">Movie not found</h2>
+        <BackButton />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 flex overflow-hidden">
@@ -59,7 +94,7 @@ export default function MovieDetailClient({ movieTitle }: Props) {
                 <div
                   className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-110 ${showPlayer ? 'blur-2xl opacity-40' : 'blur-0 opacity-100'}`}
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=2000')`,
+                    backgroundImage: `url(${movieData.posterUrl || 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=2000'})`,
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent z-10" />
@@ -68,7 +103,7 @@ export default function MovieDetailClient({ movieTitle }: Props) {
 
               {!showPlayer ? (
                 /* Hero Content Mode */
-                <div className="relative flex-1 flex flex-col justify-end px-8 md:px-16 pb-24 z-20 max-w-6xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                <div className="relative flex-1 flex flex-col justify-center gap-4 px-8 md:px-16 pb-24 z-20 max-w-6xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
                   <div className="flex flex-wrap items-center gap-4 mb-8">
                     <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-600/20">
                       <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
@@ -81,19 +116,16 @@ export default function MovieDetailClient({ movieTitle }: Props) {
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                       </svg>
-                      <span className="text-sm font-black uppercase tracking-widest">8.9 Rating</span>
+                      <span className="text-sm font-black uppercase tracking-widest">{movieData.rating || '8.9'} Rating</span>
                     </div>
-                    <span className="text-slate-400 text-xs font-bold tracking-widest uppercase">2h 45m • 2024 • 4K</span>
+                    <span className="text-slate-400 text-xs font-bold tracking-widest uppercase">
+                      2h 45m • {movieData.year || '2024'} • {movieData.quality || '4K'}
+                    </span>
                   </div>
 
                   <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85] uppercase mb-8 drop-shadow-2xl">
-                    {movieTitle}
+                    {movieData.title.length > 20 ? movieData.title.slice(0, 20) + '...' : movieData.title}
                   </h1>
-
-                  <p className="text-slate-300 text-lg md:text-xl leading-relaxed max-w-3xl font-medium mb-12 opacity-90">
-                    In a world where light is a rare commodity, a group of outcasts must embark on a dangerous journey to find the
-                    fabled Sun Pillar. As they navigate through treacherous shadows and face their inner demons.
-                  </p>
 
                   <div className="flex flex-wrap items-center gap-6">
                     <button
@@ -116,13 +148,17 @@ export default function MovieDetailClient({ movieTitle }: Props) {
                 /* Cinema Player Mode */
                 <div className="relative flex-1 z-30 animate-in fade-in zoom-in-95 duration-700 flex items-center justify-center p-4 md:p-8">
                   <div className="w-full max-w-7xl aspect-video rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(79,70,229,0.2)] border border-white/5 relative group">
-                    <VideoPlayer title={movieTitle} videoUrl="/tv-shows/video.webm" autoPlay={true} />
+                    <VideoPlayer
+                      title={movieData.title}
+                      videoUrl={`http://localhost:5000${movieData.videoUrl}`}
+                      autoPlay={true}
+                    />
 
                     {/* Floating Player Controls Overlay */}
                     <div className="absolute top-0 inset-x-0 p-8 flex items-center justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="flex items-center gap-4">
                         <div className="px-4 py-2 bg-black/40 backdrop-blur-xl rounded-xl border border-white/10">
-                          <h3 className="text-white font-bold text-sm tracking-tight">Now Playing: {movieTitle}</h3>
+                          <h3 className="text-white font-bold text-sm tracking-tight">Now Playing: {movieData.title}</h3>
                         </div>
                       </div>
                       <button
@@ -234,6 +270,7 @@ export default function MovieDetailClient({ movieTitle }: Props) {
                   {[1, 2, 3, 4, 5, 6].map((i) => (
                     <MovieCard
                       key={i}
+                      id={i.toString()}
                       title={`Related Movie ${i}`}
                       year="2024"
                       rating={(8.5 + ((i * 0.1) % 1)).toFixed(1)}

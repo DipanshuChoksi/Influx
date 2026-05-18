@@ -1,10 +1,7 @@
 import MovieDetailClient from '../../components/ui/MovieDetailClient';
 
 export default async function MovieDetailPage({ params }: { params: Promise<{ movie: string }> }) {
-  const { movie } = await params;
+  const { movie: movieId } = await params;
 
-  // Decoding the movie title from URL
-  const movieTitle = decodeURIComponent(movie);
-
-  return <MovieDetailClient movieTitle={movieTitle} />;
+  return <MovieDetailClient movieId={movieId} />;
 }

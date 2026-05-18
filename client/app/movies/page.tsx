@@ -1,7 +1,17 @@
 import Sidebar from '../components/ui/Sidebar';
 import MovieCard from '../components/ui/MovieCard';
+import { API_BASE_URL } from '../consts/global';
 
 export default async function MoviesPage() {
+  let movies = [];
+  try {
+    const res = await fetch(`${API_BASE_URL}media/movies`, { cache: 'no-store' });
+    const data = await res.json();
+    movies = data.data || [];
+  } catch (err) {
+    console.error('Failed to fetch movies:', err);
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 flex overflow-hidden">
       {/* Side Navigation */}
@@ -76,15 +86,20 @@ export default async function MoviesPage() {
               <h3 className="text-2xl font-black text-white tracking-tight">Recently Added</h3>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {[7, 8, 9, 10, 11, 12].map((i) => (
-                <MovieCard
-                  key={i}
-                  title={`New Release ${i}`}
-                  year="2024"
-                  rating={(8.0 + ((i * 0.1) % 1.5)).toFixed(1)}
-                  quality="4K"
-                />
-              ))}
+              {movies.length > 0 ? (
+                movies.map((movie: any) => (
+                  <MovieCard
+                    key={movie._id}
+                    id={movie._id}
+                    title={movie.title}
+                    year={movie.year || '2024'}
+                    rating={movie.rating || '8.5'}
+                    quality={movie.quality || 'HD'}
+                  />
+                ))
+              ) : (
+                <p className="text-slate-500 col-span-full py-20 text-center">No movies found. Head to Ingest to add some!</p>
+              )}
             </div>
           </section>
 

@@ -8,6 +8,7 @@ export const fetchClientCurrentUser = async () => {
 
     return response.data.user;
   } catch (error) {
+    console.error('Failed to fetch user:', error);
     return null;
   }
 };
@@ -19,6 +20,7 @@ export const fetchAllUsers = async () => {
 
     return response.data.users;
   } catch (error) {
+    console.error('Failed to fetch users:', error);
     return [];
   }
 };
@@ -30,6 +32,7 @@ export const fetchUserByName = async (name: string) => {
 
     return response.data.user;
   } catch (error) {
+    console.error('Failed to fetch user:', error);
     return null;
   }
 };
@@ -42,6 +45,7 @@ export const updateProfile = async (updateData: { name: string; email: string })
 
     return response.data.user;
   } catch (error) {
+    console.error('Failed to update user:', error);
     return null;
   }
 };

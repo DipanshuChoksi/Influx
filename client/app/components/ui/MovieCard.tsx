@@ -1,8 +1,20 @@
 import Link from 'next/link';
 
-function MovieCard({ title, year, rating, quality }: { title: string; year: string; rating: string; quality: string }) {
+function MovieCard({
+  id,
+  title,
+  year,
+  rating,
+  quality,
+}: {
+  id: string;
+  title: string;
+  year: string;
+  rating: string;
+  quality: string;
+}) {
   return (
-    <Link href={`/movies/${encodeURIComponent(title)}`} className="block">
+    <Link href={`/movies/${id}`} className="block">
       <div className="aspect-[2/3] bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden group cursor-pointer hover:ring-2 hover:ring-indigo-500 transition-all relative">
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-5">
           <h5 className="text-white text-sm font-black leading-tight mb-2">{title}</h5>

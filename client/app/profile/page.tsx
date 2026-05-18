@@ -124,6 +124,7 @@ function ProfilePage() {
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <MovieCard
                     key={i}
+                    id={i.toString()}
                     title={`Watchlist Movie ${i}`}
                     year="2024"
                     rating={(8.5 + ((i * 0.1) % 1)).toFixed(1)}

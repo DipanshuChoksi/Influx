@@ -1,9 +1,29 @@
 'use client';
+import { useState, useEffect } from 'react';
 import ShowCard from '../components/ui/ShowCard';
 import ContinueCard from '../components/ui/ContinueCard';
 import Sidebar from '../components/ui/Sidebar';
+import { API_BASE_URL } from '../consts/global';
+import axios from 'axios';
 
 export default function TvShowsPage() {
+  const [tvShows, setTvShows] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchShows = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}media/tv-shows`);
+        setTvShows(res.data.data || []);
+      } catch (err) {
+        console.error('Failed to fetch TV shows:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchShows();
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 flex overflow-hidden">
       {/* Side Navigation */}
@@ -92,9 +112,13 @@ export default function TvShowsPage() {
               <h3 className="text-xl font-bold text-white">New Releases</h3>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <ShowCard key={i} title={`Show Title ${i}`} seasons={(i % 5) + 1} rating={(7.0 + ((i * 0.5) % 2.9)).toFixed(1)} />
-              ))}
+              {tvShows.length > 0 ? (
+                tvShows.map((show: any) => (
+                  <ShowCard key={show._id} title={show.title} seasons={show.seasons || 1} rating={show.rating || '8.0'} />
+                ))
+              ) : (
+                <p className="text-slate-500 col-span-full py-20 text-center">No TV shows found. Head to Ingest to add some!</p>
+              )}
             </div>
           </section>
 
