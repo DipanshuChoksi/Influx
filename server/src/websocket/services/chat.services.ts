@@ -25,3 +25,14 @@ export const handleSendMessage = (socket: Socket, io: Server) => async (payload:
 };
 
 export const handleStartWatchParty = (socket: Socket, io: Server) => (payload: any) => {};
+
+export const handleSendRoomMessage = (socket: Socket, io: Server) => (payload: any) => {
+  try {
+    const roomId = payload?.roomId;
+    if (roomId) {
+      socket.to(roomId).emit('receivedRoomMsg', payload);
+    }
+  } catch (error: any) {
+    socket.emit('error', { message: 'Failed to send room message', details: error.message });
+  }
+};

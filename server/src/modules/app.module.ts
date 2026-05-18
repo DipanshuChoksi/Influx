@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import path from 'path';
 import { BaseError, ErrorHandler, logger } from '@/shared';
-import { authRouter, UserRouter, messageRouter, ingestRouter, mediaRouter } from '../routes/index';
+import { authRouter, UserRouter, messageRouter, ingestRouter, mediaRouter, watchPartyRouter } from '../routes/index';
 import { TestController } from '@/controllers';
 import { authMiddleware } from '@/middlewares/auth';
 
@@ -33,6 +33,7 @@ const applicationModule = (ORIGINS: string[] = []): Application => {
   app.use('/api/messages', authMiddleware, messageRouter);
   app.use('/api/ingest', authMiddleware, ingestRouter);
   app.use('/api/media', mediaRouter);
+  app.use('/api/watch-parties', authMiddleware, watchPartyRouter);
 
   // Serve static media files
   app.use('/media', express.static(path.join(__dirname, '../../media')));

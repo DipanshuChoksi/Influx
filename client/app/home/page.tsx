@@ -1,6 +1,7 @@
 import MediaSection from '../components/ui/MoviesSection';
 import RoomCard from '../components/ui/RoomCard';
 import Sidebar from '../components/ui/Sidebar';
+import NotificationBell from '../components/ui/NotificationBell';
 
 export default async function HomePage() {
   return (
@@ -32,6 +33,10 @@ export default async function HomePage() {
                 className="w-full bg-slate-900/50 border border-slate-800 rounded-full py-2.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 transition-all"
               />
             </div>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <NotificationBell />
           </div>
         </header>
 

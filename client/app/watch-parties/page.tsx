@@ -1,8 +1,8 @@
 import Sidebar from '../components/ui/Sidebar';
 import UsersIcon from '../components/icons/UsersIcon';
-import AddIcon from '../components/icons/AddIcon';
 import UpcomingCard from './components/UpcomingCard';
 import PartyCard from './components/PartyCard';
+import CreatePartyButton from './components/CreatePartyButton';
 
 export default async function WatchPartiesPage() {
   return (
@@ -27,10 +27,7 @@ export default async function WatchPartiesPage() {
           </div>
 
           <div className="flex items-center gap-6">
-            <button className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-indigo-600/20 active:scale-95 flex items-center gap-2">
-              <AddIcon />
-              <span>New Party</span>
-            </button>
+            <CreatePartyButton />
           </div>
         </header>
 
