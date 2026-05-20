@@ -1,18 +1,13 @@
-function Message({
-  user,
-  time,
-  content,
-  isMe = false,
-  color,
-  bg,
-}: {
+interface IMessageProps {
   user: string;
   time: string;
   content: string;
-  isMe?: boolean;
-  color: string;
-  bg: string;
-}) {
+}
+
+function Message({ user, time, content }: IMessageProps) {
+  const isMe = user === 'You';
+  const color = isMe ? 'text-indigo-400' : 'text-purple-400';
+  const bg = isMe ? 'bg-indigo-400/10' : 'bg-purple-400/10';
   return (
     <div className={`flex gap-4 ${isMe ? 'flex-row-reverse' : ''}`}>
       <div className={`w-10 h-10 rounded-xl ${bg} flex items-center justify-center shrink-0 border border-white/5`}>

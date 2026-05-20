@@ -1,26 +1,22 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import AuthPageClient from '@/app/components/ui/AuthPageClient';
-import { useFetchCurrentUser } from './hooks/useFetchCurrentUser';
-import useUser from './contexts/user.context';
+import AuthPageClient from './components/ui/AuthPageClient';
+import useAuthStore from './features/auth/stores/auth.store';
+import { useEffect } from 'react';
 
-export default function Page() {
+function AuthPage() {
+  const { user } = useAuthStore();
   const router = useRouter();
-
-  const { loading } = useFetchCurrentUser();
-  const user = useUser((state) => state.user);
+  console.log(user);
 
   useEffect(() => {
     if (user) {
-      router.replace('/home');
+      router.push('/dashboard/home');
     }
-  }, [user, router]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  }, []);
 
   return <AuthPageClient />;
 }
+
+export default AuthPage;

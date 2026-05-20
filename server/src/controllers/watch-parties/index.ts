@@ -100,7 +100,7 @@ export const getInviteUser = async (req: Request, res: Response) => {
     if (!userId) {
       return res.status(400).json({ success: false, message: 'User ID is required' });
     }
-    const invites = await InviteToWatchPartiesModel.find({ user: userId }).populate('watchParty user');
+    const invites = await InviteToWatchPartiesModel.find({ user: userId }).populate('sender');
 
     if (!invites) {
       return res.status(404).json({ success: false, message: 'No invites found' });

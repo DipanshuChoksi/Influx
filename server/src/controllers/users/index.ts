@@ -1,4 +1,4 @@
-import { getAllUsers, getUserById, getUserByName, updateUser } from '@/repositories';
+import { getAllUsers, getUserById, updateUser } from '@/repositories';
 import { ApiError } from '@/shared';
 import { HttpStatusCode } from '@/types';
 import { NextFunction, Request, Response } from 'express';
@@ -38,13 +38,13 @@ export const GetAllUsersController = async (req: Request, res: Response, next: N
   }
 };
 
-export const GetUserByNameController = async (req: Request, res: Response, next: NextFunction) => {
+export const GetUserByIdController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { name } = req.params;
-    const user = await getUserByName(name);
+    const { id } = req.params;
+    const user = await getUserById(id);
 
     if (!user) {
-      throw new ApiError('User not found', 'getUserByNameController', HttpStatusCode.NOT_FOUND, true);
+      throw new ApiError('User not found', 'getUserByIdController', HttpStatusCode.NOT_FOUND, true);
     }
 
     res.status(HttpStatusCode.OK).json({

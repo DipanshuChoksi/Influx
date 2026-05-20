@@ -20,14 +20,7 @@ export async function getAllUsers(userId?: string) {
     throw error;
   }
 }
-export async function getUserByName(name: string) {
-  try {
-    const user = await UserModel.findOne({ name });
-    return user;
-  } catch (error) {
-    throw error;
-  }
-}
+
 export async function updateUser(id: string, updateData: any) {
   try {
     const user = await UserModel.findByIdAndUpdate(id, updateData, { new: true }).select('-password');

@@ -1,1 +1,22 @@
 @import 'tailwindcss';
+
+@theme {
+  /* Brand accents (Indigo/Purple gradients & highlights) */
+  --color-primary: #5850ec;
+  --color-secondary: #a855f7;
+
+  /* Backgrounds & Surfaces */
+  --color-bg-page: #060713;
+  --color-bg-sidebar: #090a16;
+  --color-bg-header: #080916;
+  --color-bg-card: #0e1126;
+  --color-bg-overlay: rgba(6, 7, 19, 0.75);
+
+  /* Borders & Lines */
+  --color-border-card: #161c3d;
+  --color-track-bg: rgba(255, 255, 255, 0.08);
+
+  /* Typography */
+  --color-text-main: #ffffff;
+  --color-text-muted: #94a3b8;
+}

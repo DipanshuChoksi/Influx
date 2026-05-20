@@ -20,10 +20,11 @@ export async function postRequest(endpoint: string, payload?: any) {
   }
 }
 
-export async function getRequest(endpoint: string) {
+export async function getRequest(endpoint: string, options?: object) {
   try {
     const url = `${API_BASE_URL}${endpoint}`;
     const response = await axios.get(url, {
+      ...options,
       withCredentials: true,
     });
     return response;
@@ -32,6 +33,7 @@ export async function getRequest(endpoint: string) {
     return null;
   }
 }
+
 export async function patchRequest(endpoint: string, payload?: any) {
   try {
     const url = `${API_BASE_URL}${endpoint}`;

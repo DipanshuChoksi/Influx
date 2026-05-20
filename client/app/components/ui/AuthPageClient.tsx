@@ -1,6 +1,6 @@
 'use client';
 
-import { signup, login } from '@/app/actions/auth';
+import { signup, login } from '@/app/features/auth/actions/auth';
 import { useActionState, useState } from 'react';
 import Link from 'next/link';
 import EyeOffIcon from '../icons/EyeOffIcon';

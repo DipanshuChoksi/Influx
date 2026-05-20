@@ -1,4 +1,3 @@
-import React from 'react';
 import NavItem from './NavItem';
 import HomeIcon from '../icons/HomeIcon';
 import MovieIcon from '../icons/MovieIcon';
@@ -6,10 +5,42 @@ import TvIcon from '../icons/TvIcon';
 import UsersIcon from '../icons/UsersIcon';
 import ChatIcon from '../icons/ChatIcon';
 import UserIcon from '../icons/UserIcon';
-import { signout } from '@/app/actions/auth';
+import { signout } from '@/app/features/auth/actions/auth';
 import LogoutIcon from '../icons/LogoutIcon';
 
 function Sidebar() {
+  const sidebarConsts = [
+    {
+      path: '/dashboard/home',
+      icon: <HomeIcon />,
+      label: 'Home',
+    },
+    {
+      path: '/dashboard/movies',
+      icon: <MovieIcon />,
+      label: 'Movies',
+    },
+    {
+      path: '/dashboard/tv-shows',
+      icon: <TvIcon />,
+      label: 'TV Shows',
+    },
+    {
+      path: '/dashboard/watch-parties',
+      icon: <UsersIcon />,
+      label: 'Watch Parties',
+    },
+    {
+      path: '/dashboard/chat',
+      icon: <ChatIcon />,
+      label: 'Chat',
+    },
+    {
+      path: '/dashboard/profile',
+      icon: <UserIcon />,
+      label: 'Profile',
+    },
+  ];
   return (
     <aside className="fixed left-0 top-0 h-full w-20 md:w-64 bg-slate-900/50 backdrop-blur-xl border-r border-slate-800 flex flex-col z-50">
       <div className="p-6 mb-8 flex items-center gap-3">
@@ -22,12 +53,9 @@ function Sidebar() {
       </div>
 
       <nav className="flex-1 px-4 space-y-2">
-        <NavItem href="/home" icon={<HomeIcon />} label="Home" />
-        <NavItem href="/movies" icon={<MovieIcon />} label="Movies" />
-        <NavItem href="/tv-shows" icon={<TvIcon />} label="TV Shows" />
-        <NavItem href="/watch-parties" icon={<UsersIcon />} label="Watch Parties" />
-        <NavItem href="/chat" icon={<ChatIcon />} label="Chat" />
-        <NavItem href="/profile" icon={<UserIcon />} label="Profile" />
+        {sidebarConsts.map((item, idx) => {
+          return <NavItem key={idx} href={item.path} icon={item.icon} label={item.label} />;
+        })}
       </nav>
 
       <div className="p-4 mt-auto border-t border-slate-800/50">

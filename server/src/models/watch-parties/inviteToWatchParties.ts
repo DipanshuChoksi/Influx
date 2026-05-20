@@ -6,6 +6,10 @@ const InviteToWatchParties = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Users',
     },
+    sender: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users',
+    },
     watchParty: {
       type: String,
     },

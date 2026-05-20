@@ -7,12 +7,8 @@ export const initializeSocket = (io: Server) => {
   // io.use((socket: Socket, next: any) => socketAuthMiddleware(socket, next));
 
   io.on('connection', (socket) => {
-    console.log(`Socket connected: ${socket.id}`);
-
     registerChatHandlers(socket, io);
 
-    socket.on('disconnect', () => {
-      console.log(`Socket disconnected: ${socket.id}`);
-    });
+    socket.on('disconnect', () => {});
   });
 };

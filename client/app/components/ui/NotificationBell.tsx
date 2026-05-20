@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import useUser from '../../contexts/user.context';
 import { getRequest } from '../../utils/api';
 import { User } from '@/app/types';
+import useAuthStore from '@/app/features/auth/stores/auth.store';
 
 export default function NotificationBell() {
-  const { user } = useUser();
+  const { user } = useAuthStore();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [invites, setInvites] = useState<{ _id: string; watchParty: string; user: User }[]>([]);
@@ -73,7 +73,7 @@ export default function NotificationBell() {
                     <button
                       onClick={() => {
                         setIsOpen(false);
-                        router.push(`/watch-parties/${invite.watchParty}`);
+                        router.push(`/dashboard/watch-parties/${invite.watchParty}`);
                       }}
                       className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition-colors ml-3"
                     >
