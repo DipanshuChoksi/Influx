@@ -4,12 +4,11 @@ import { useEffect, useRef } from 'react';
 import 'plyr/dist/plyr.css';
 
 interface Props {
-  title: string;
   videoUrl: string;
   autoPlay?: boolean;
 }
 
-export default function VideoPlayer({ title, videoUrl, autoPlay }: Props) {
+export default function VideoPlayer({ videoUrl, autoPlay }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {

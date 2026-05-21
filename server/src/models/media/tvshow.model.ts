@@ -9,13 +9,16 @@ export interface ITvShow extends Document {
   description?: string;
 }
 
-const TvShowSchema = new Schema<ITvShow>({
-  title: { type: String, required: true },
-  seasons: { type: Number },
-  rating: { type: String },
-  videoUrl: { type: String, required: true },
-  posterUrl: { type: String },
-  description: { type: String },
-}, { timestamps: true });
+const TvShowSchema = new Schema<ITvShow>(
+  {
+    title: { type: String, required: true },
+    seasons: { type: Number },
+    rating: { type: String },
+    videoUrl: { type: String, required: true },
+    posterUrl: { type: String },
+    description: { type: String },
+  },
+  { timestamps: true }
+);
 
 export default model<ITvShow>('TvShow', TvShowSchema);

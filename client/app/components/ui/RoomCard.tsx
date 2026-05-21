@@ -1,16 +1,4 @@
-function RoomCard({
-  title,
-  host,
-  media,
-  participants,
-  image,
-}: {
-  title: string;
-  host: string;
-  media: string;
-  participants: number;
-  image: string;
-}) {
+function RoomCard({ title, media, participants, image }: { title: string; media: string; participants: number; image: string }) {
   return (
     <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 hover:bg-slate-900/60 transition-all group cursor-pointer">
       <div className={`w-full h-32 ${image} rounded-xl mb-4 flex items-center justify-center relative overflow-hidden`}>

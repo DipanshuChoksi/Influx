@@ -6,6 +6,7 @@ import { FormState, SignupFormSchema, SigninFormSchema } from '../../../lib/defi
 
 import { HttpStatusCode } from '../../../consts/http';
 import { errorResponse, postRequest } from '../../../utils/api';
+import useAuthStore from '../stores/auth.store';
 
 export async function signup(state: FormState, formData: FormData) {
   const validatedFields = SignupFormSchema.safeParse({
@@ -66,12 +67,14 @@ export async function login(state: FormState, formData: FormData) {
   redirect('/dashboard/home');
 }
 
-export async function signout() {
+export async function logout() {
   const response = await postRequest('auth/logout');
 
   if (!response || response.status !== HttpStatusCode.OK) {
     return errorResponse('An error occurred during sign out');
   }
+
+  useAuthStore.getState().logout();
 
   redirect('/');
 }

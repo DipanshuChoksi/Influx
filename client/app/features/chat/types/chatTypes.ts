@@ -1,7 +1,9 @@
-export interface Message {
-  sender: string;
-  message: string;
+export interface IMessage {
   createdAt: string;
+  message: string;
+  receiver: string;
+  sender: string;
+  updatedAt: string;
 }
 
 export interface MessageIncoming {

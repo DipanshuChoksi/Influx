@@ -4,7 +4,7 @@ import { fetchMessages } from '../api/fetchMessages';
 import { User } from '@/app/types';
 import { mapIncomingMessage } from '../services/messageMapper';
 import { CHAT_EVENTS } from '../realtime/chatEvents';
-import { MessageIncoming } from '../types/chatTypes';
+import { IMessage, MessageIncoming } from '../types/chatTypes';
 
 function useConversationPage(user: User | null, receiver: User) {
   const [messages, setMessages] = useState<MessageIncoming[]>([]);
@@ -23,7 +23,7 @@ function useConversationPage(user: User | null, receiver: User) {
       });
     }
 
-    const handleMessage = (msg: any) => {
+    const handleMessage = (msg: IMessage) => {
       setMessages((prev) => [...prev, mapIncomingMessage(msg, user?._id, receiver.name)]);
     };
 

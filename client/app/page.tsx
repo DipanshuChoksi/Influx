@@ -8,13 +8,12 @@ import { useEffect } from 'react';
 function AuthPage() {
   const { user } = useAuthStore();
   const router = useRouter();
-  console.log(user);
 
   useEffect(() => {
     if (user) {
       router.push('/dashboard/home');
     }
-  }, []);
+  }, [user, router]);
 
   return <AuthPageClient />;
 }

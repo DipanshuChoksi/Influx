@@ -31,7 +31,7 @@ function ProfilePage() {
           <div className="flex flex-col md:flex-row items-center gap-10">
             <div className="relative">
               <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-4xl font-black text-white shadow-2xl shadow-indigo-500/20">
-                {user.name.charAt(0).toUpperCase()}
+                {user?.name.charAt(0).toUpperCase()}
               </div>
               <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-indigo-400">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,16 +47,16 @@ function ProfilePage() {
             </div>
 
             <div className="text-center md:text-left space-y-2">
-              <h2 className="text-4xl font-black text-white tracking-tight">{user.name}</h2>
-              <p className="text-slate-400 font-medium">{user.email}</p>
+              <h2 className="text-4xl font-black text-white tracking-tight">{user?.name}</h2>
+              <p className="text-slate-400 font-medium">{user?.email}</p>
               <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
                 <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-[10px] font-bold text-slate-300 uppercase tracking-widest">
                   Pro Member
                 </span>
                 <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-[10px] font-bold text-slate-300 uppercase tracking-widest">
                   Joined{' '}
-                  {user.createdAt
-                    ? new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                  {user?.createdAt
+                    ? new Date(user?.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
                     : 'Recently'}
                 </span>
               </div>

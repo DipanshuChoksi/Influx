@@ -38,7 +38,7 @@ function useAuthSession() {
     }
 
     fetchUser();
-  }, [user, setUser]);
+  }, [user, setUser, router]);
 
   return { isInitialized };
 }

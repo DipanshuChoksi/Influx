@@ -5,7 +5,7 @@ import TvIcon from '../icons/TvIcon';
 import UsersIcon from '../icons/UsersIcon';
 import ChatIcon from '../icons/ChatIcon';
 import UserIcon from '../icons/UserIcon';
-import { signout } from '@/app/features/auth/actions/auth';
+import { logout } from '@/app/features/auth/actions/auth';
 import LogoutIcon from '../icons/LogoutIcon';
 
 function Sidebar() {
@@ -59,7 +59,7 @@ function Sidebar() {
       </nav>
 
       <div className="p-4 mt-auto border-t border-slate-800/50">
-        <form action={signout}>
+        <form action={logout}>
           <button className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-400 hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all duration-200 group">
             <LogoutIcon />
             <span className="hidden md:block">Sign Out</span>

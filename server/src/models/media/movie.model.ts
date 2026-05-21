@@ -10,14 +10,17 @@ export interface IMovie extends Document {
   description?: string;
 }
 
-const MovieSchema = new Schema<IMovie>({
-  title: { type: String, required: true },
-  year: { type: String },
-  rating: { type: String },
-  quality: { type: String },
-  videoUrl: { type: String, required: true },
-  posterUrl: { type: String },
-  description: { type: String },
-}, { timestamps: true });
+const MovieSchema = new Schema<IMovie>(
+  {
+    title: { type: String, required: true },
+    year: { type: String },
+    rating: { type: String },
+    quality: { type: String },
+    videoUrl: { type: String, required: true },
+    posterUrl: { type: String },
+    description: { type: String },
+  },
+  { timestamps: true }
+);
 
 export default model<IMovie>('Movie', MovieSchema);

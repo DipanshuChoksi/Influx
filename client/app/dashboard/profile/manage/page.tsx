@@ -34,13 +34,14 @@ export default function ManageProfilePage() {
         setUser(updatedUser);
         setSuccess(true);
         setTimeout(() => {
-          router.push('/profile');
+          router.push('/dashboard/profile');
         }, 1500);
       } else {
         setError('Failed to update profile. Please try again.');
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
+      console.log(err);
     } finally {
       setLoading(false);
     }

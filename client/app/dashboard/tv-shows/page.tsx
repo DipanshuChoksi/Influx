@@ -4,7 +4,7 @@ import ContinueCard from '@/app/components/ui/ContinueCard';
 import useFetchMovies from './hooks/useFetchMovies';
 
 export default function TvShowsPage() {
-  const { loading, tvShows } = useFetchMovies();
+  const { tvShows } = useFetchMovies();
   return (
     <main className="pl-20 md:pl-64 flex-1 flex flex-col h-screen">
       {/* Top Navbar */}

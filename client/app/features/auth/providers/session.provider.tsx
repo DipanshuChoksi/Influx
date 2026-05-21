@@ -15,9 +15,13 @@ function SessionProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (isInitialized && !user) {
-      router.push('/');
+      router.replace('/');
     }
-  }, [isInitialized, user]);
+  }, [isInitialized, user, router]);
+
+  if (!isInitialized) {
+    return <FullPageLoader />;
+  }
 
   return children;
 }

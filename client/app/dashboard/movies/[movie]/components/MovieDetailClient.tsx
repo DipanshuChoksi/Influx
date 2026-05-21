@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Sidebar from './Sidebar';
-import BackButton from './BackButton';
-import VideoPlayer from './VideoPlayer';
-import MovieCard from './MovieCard';
-import { API_BASE_URL } from '../../consts/global';
+import Sidebar from '../../../../components/ui/Sidebar';
+import BackButton from '../../../../components/ui/BackButton';
+import VideoPlayer from '../../../../components/ui/VideoPlayer';
+import MovieCard from '../../../../components/ui/MovieCard';
+import { API_BASE_URL } from '@/app/consts/global';
 import axios from 'axios';
+import Image from 'next/image';
 
 interface Props {
   movieId: string;
@@ -148,11 +149,7 @@ export default function MovieDetailClient({ movieId }: Props) {
                 /* Cinema Player Mode */
                 <div className="relative flex-1 z-30 animate-in fade-in zoom-in-95 duration-700 flex items-center justify-center p-4 md:p-8">
                   <div className="w-full max-w-7xl aspect-video rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(79,70,229,0.2)] border border-white/5 relative group">
-                    <VideoPlayer
-                      title={movieData.title}
-                      videoUrl={`http://localhost:5000${movieData.videoUrl}`}
-                      autoPlay={true}
-                    />
+                    <VideoPlayer videoUrl={`http://localhost:5000${movieData.videoUrl}`} autoPlay={true} />
 
                     {/* Floating Player Controls Overlay */}
                     <div className="absolute top-0 inset-x-0 p-8 flex items-center justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -221,7 +218,7 @@ export default function MovieDetailClient({ movieId }: Props) {
                       ].map((actor) => (
                         <div key={actor.name} className="flex items-center gap-4 group">
                           <div className="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-slate-700 group-hover:border-indigo-500 transition-colors">
-                            <img src={actor.img} alt={actor.name} className="w-full h-full object-cover" />
+                            <Image src={actor.img} alt={actor.name} className="w-full h-full object-cover" />
                           </div>
                           <div>
                             <p className="text-sm font-bold text-white leading-tight">{actor.name}</p>

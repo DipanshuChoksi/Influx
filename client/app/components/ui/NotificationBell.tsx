@@ -13,21 +13,22 @@ export default function NotificationBell() {
   const [invites, setInvites] = useState<{ _id: string; watchParty: string; user: User }[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchInvites = async () => {
-    if (!user) return;
-    setLoading(true);
-    const response = await getRequest(`watch-parties/invites/${user._id}`);
-    console.log(response);
-    if (response?.data?.success) {
-      setInvites(response.data.data);
-    }
-    setLoading(false);
-  };
-
   useEffect(() => {
-    if (isOpen) {
-      fetchInvites();
-    }
+    if (!isOpen) return;
+    const fetchInvites = async () => {
+      setLoading(true);
+      const response = await getRequest(`watch-parties/invites/${user?._id}`);
+      if (response?.data?.success) {
+        setInvites(response.data.data);
+      }
+      setLoading(false);
+    };
+
+    const loadInvites = async () => {
+      await fetchInvites();
+    };
+
+    loadInvites();
   }, [isOpen, user?._id]);
 
   return (
